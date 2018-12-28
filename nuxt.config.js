@@ -66,7 +66,7 @@ module.exports = {
   ** Axios module configuration
   */
   axios: {
-    baseURL: 'http://cart.test/api'
+    baseURL: 'http://localhost:8000/api'
   },
 
   /*
