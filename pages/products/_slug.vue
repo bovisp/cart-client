@@ -29,7 +29,24 @@
 						:type="type"
 						:variations="variations"
 						:key="type"
+						v-model="form.variation"
 	        		/>
+
+	        		<div class="field has-addons" v-if="form.variation">
+	        			<div class="control">
+	        				<div class="select is-fullwidth">
+	        					<select>
+	        						<option value="">1</option>
+	        					</select>
+	        				</div>
+	        			</div>
+
+	        			<div class="control">
+	        				<button class="button is-info" type="submit">
+	        					Add to cart
+	        				</button>
+	        			</div>
+	        		</div>
 	        	</form>
 	        </section>
 	      </div>
@@ -48,7 +65,11 @@
 
 		data () {
 			return {
-				product: null
+				product: null,
+				form: {
+					variation: '',
+					quantity: 1
+				}
 			}
 		},
 

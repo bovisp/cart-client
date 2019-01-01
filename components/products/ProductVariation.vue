@@ -6,7 +6,11 @@
 
 		<div class="control">
 			<div class="select is-fullwidth">
-				<select :id="type">
+				<select 
+					:id="type" 
+					@change="changed($event, type)"
+					:value="selectedVariationId"
+				>
 					<option value="">Please choose...</option>
 
 					<option 
@@ -36,6 +40,36 @@
 			variations: {
 				required: true,
 				type: Array
+			},
+			value: {
+				required: false,
+				default: ''
+			}
+		},
+
+		computed: {
+			selectedVariationId () {
+				if (!this.findVariation(this.value.id)) {
+					return ''
+				}
+
+				return this.value.id
+			}
+		},
+
+		methods: {
+			changed (e, type) {
+				this.$emit('input', this.findVariation(e.target.value))
+			},
+
+			findVariation (id) {
+				let variation = this.variations.find(v => v.id == id)
+
+				if (typeof variation === 'undefined') {
+					return null
+				}
+
+				return variation
 			}
 		}
 	}
