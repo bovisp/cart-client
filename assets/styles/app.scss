@@ -11,3 +11,11 @@ $message-body-border: 0;
 @import "components/navigation";
 
 @import "~bulma/bulma";
+
+// Helpers
+
+.mr {
+	&-4 {
+		margin-right: 1rem;
+	}
+}
