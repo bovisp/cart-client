@@ -42,8 +42,12 @@
 	        		<div class="field has-addons" v-if="form.variation">
 	        			<div class="control">
 	        				<div class="select is-fullwidth">
-	        					<select>
-	        						<option value="">1</option>
+	        					<select v-model="form.quantity">
+	        						<option 
+	        							:value="x"
+	        							v-for="x in parseInt(form.variation.stock_count)"
+	        							:key="x"
+	        						>{{ x }}</option>
 	        					</select>
 	        				</div>
 	        			</div>
@@ -77,6 +81,12 @@
 					variation: '',
 					quantity: 1
 				}
+			}
+		},
+
+		watch: {
+			'form.variation' () {
+				this.form.quantity = 1
 			}
 		},
 
