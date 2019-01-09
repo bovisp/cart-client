@@ -32,18 +32,28 @@
 		</td>
 
 		<td>
-			<a href="">Remove</a>
+			<button class="button is-text" @click="removeItem(product.id)">
+				Remove
+			</button>
 		</td>
 	</tr>
 </template>
 
 <script>
+	import { mapActions } from 'vuex'
+	
 	export default {
 		props: {
 			product: {
 				type: Object,
 				required: true
 			}
+		},
+
+		methods: {
+			...mapActions({
+				removeItem: 'cart/destroy' 
+			})
 		}
 	}
 </script>
