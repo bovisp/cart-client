@@ -66,9 +66,9 @@
               Orders
             </a>
 
-            <a href="" class="navbar-item">
+            <nuxt-link :to="{ name: 'cart' }" class="navbar-item">
               Cart ({{ cartCount }})
-            </a>
+            </nuxt-link>
           </template>
         </div>
       </div>
@@ -83,7 +83,7 @@
     computed: {
       ...mapGetters({
         categories: 'categories',
-        count: 'cart/count'
+        cartCount: 'cart/count'
       })
     }
   }
