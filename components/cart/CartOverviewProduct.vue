@@ -12,8 +12,8 @@
 			<div class="field">
 				<div class="control">
 					<div class="select is-fullwidth">
-						<select>
-							<option value="0">0</option>
+						<select v-model="quantity">
+							<option value="0" v-if="product.quantity == 0">0</option>
 
 							<option 
 								:value="x"
@@ -41,7 +41,7 @@
 
 <script>
 	import { mapActions } from 'vuex'
-	
+
 	export default {
 		props: {
 			product: {
@@ -50,9 +50,25 @@
 			}
 		},
 
+		data () {
+			return {
+				quantity: this.product.quantity
+			}
+		},
+
+		watch: {
+			'quantity' (quantity) {
+				this.updateItemQuantity({
+					productId: this.product.id,
+					quantity
+				})
+			}
+		},
+
 		methods: {
 			...mapActions({
-				removeItem: 'cart/destroy' 
+				removeItem: 'cart/destroy',
+				updateItemQuantity: 'cart/update' 
 			})
 		}
 	}
