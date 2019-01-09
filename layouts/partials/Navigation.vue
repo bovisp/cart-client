@@ -67,7 +67,7 @@
             </a>
 
             <a href="" class="navbar-item">
-              Cart (0)
+              Cart ({{ cartCount }})
             </a>
           </template>
         </div>
@@ -82,7 +82,8 @@
   export default {
     computed: {
       ...mapGetters({
-        categories: 'categories'
+        categories: 'categories',
+        count: 'cart/count'
       })
     }
   }
