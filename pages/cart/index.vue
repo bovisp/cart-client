@@ -5,13 +5,18 @@
 	      <div class="column is-three-quarters">
 	        <h1 class="title is-4">Your cart</h1>
 
-	        <article class="message">
+	        <article class="message" v-if="count">
 	          <cart-overview />
 	        </article>
+
+	        <p v-else>
+	        	Your cart is empty
+	        </p>
 
 	        <a
 	          href="#"
 	          class="button is-fullwidth is-info is-medium"
+	          v-if="!empty"
 	        >
 	          Checkout
 	        </a>
@@ -23,10 +28,18 @@
 
 <script>
 	import CartOverview from '../../components/cart/CartOverview'
+	import { mapGetters } from 'vuex'
 
 	export default {
 		components: {
 			CartOverview
+		},
+
+		computed: {
+			...mapGetters({
+				empty: 'cart/empty',
+				count: 'cart/count'
+			})
 		}
 	}
 </script>
