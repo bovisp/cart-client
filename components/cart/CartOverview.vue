@@ -36,7 +36,8 @@
 		computed: {
 			...mapGetters({
 				products: 'cart/products',
-				subtotal: 'cart/subtotal'
+				subtotal: 'cart/subtotal',
+				changed: 'cart/changed'
 			})
 		}
 	}
