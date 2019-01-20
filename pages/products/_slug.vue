@@ -30,7 +30,7 @@
 	        </section>
 
 	        <section class="section">
-	        	<form >
+	        	<form @submit.prevent="add">
 	        		<product-variation 
 						v-for="(variations, type) in product.variations"
 						:type="type"
@@ -67,6 +67,7 @@
 </template>
 
 <script>
+	import { mapActions } from 'vuex'
 	import ProductVariation from '../../components/products/ProductVariation'
 
 	export default {
@@ -87,6 +88,24 @@
 		watch: {
 			'form.variation' () {
 				this.form.quantity = 1
+			}
+		},
+
+		methods: {
+			...mapActions({
+				store: 'cart/store'
+			}),
+
+			add () {
+				this.store([{
+					id: this.form.variation.id,
+					quantity: this.form.quantity
+				}])
+
+				this.form = {
+					variation: '',
+					quantity: 1
+				}
 			}
 		},
 
