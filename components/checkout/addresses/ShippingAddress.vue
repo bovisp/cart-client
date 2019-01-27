@@ -4,7 +4,11 @@
         <h1 class="title is-5">Ship to</h1>
 
         <template v-if="selecting">
-        	<shipping-address-selector />
+        	<shipping-address-selector 
+				:addresses="addresses"
+				:selectedAddress="selectedAddress"
+				@click="addressSelected"
+        	/>
         </template>
 
 		<template v-else>
@@ -64,6 +68,12 @@
 		},
 
 		methods: {
+			addressSelected (address) {
+				this.switchAddress(address)
+
+				this.selecting = false
+			},
+
 			switchAddress (address) {
 				this.selectedAddress = address
 			}
